@@ -3,9 +3,7 @@
 class Observer{
 public:
 	Observer(double* center, double radius); //конструктор
-	~Observer(){
-		delete coordinates;
-	}
+	~Observer();
 	void set_x(double new_x); 
 	void set_y(double new_y);
 	void set_z(double new_z);

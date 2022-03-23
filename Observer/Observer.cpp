@@ -9,6 +9,9 @@ Observer::Observer(double* new_center, double new_radius){ //конструкт�
 	y = coordinates[1];
 	z = coordinates[2];
 }
+Observer::~Observer(){
+	delete coordinates;
+}
 void Observer::set_x(double new_x){
 	coordinates[0] = new_x = x;
 	return;
@@ -43,5 +46,5 @@ double Observer::get_radius(){
 	return radius;
 }
 double Observer::shoot(){ //Измерить расстояние
-	//???????????????????????????????????
+	//[WIP]
 }
