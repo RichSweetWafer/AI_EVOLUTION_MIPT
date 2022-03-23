@@ -1,7 +1,13 @@
 #include "./Observer.h"
+#include "./random_utilities.h"
 // Здесь заинклюдим рандомчик и будем генерить радиyс и корды
-Observer::Observer(){ //конструктор
-
+Observer::Observer(double* new_center, double new_radius){ //конструктор
+	radius = new_radius;
+	center = new_center;
+	coordinates = generate_obs_coordinates(center, radius);
+	x = coordinates[0];
+	y = coordinates[1];
+	z = coordinates[2];
 }
 void Observer::set_x(double new_x){
 	coordinates[0] = new_x = x;
@@ -13,11 +19,6 @@ void Observer::set_y(double new_y){
 }
 void Observer::set_z(double new_z){
 	coordinates[2] = new_z = z;
-	return;
-}
-
-void Observer::set_radius(double new_radius){ //радиус до центра фигуры
-	radius = new_radius;
 	return;
 }
 

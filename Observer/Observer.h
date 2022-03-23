@@ -2,23 +2,25 @@
 
 class Observer{
 public:
-	Observer(); //конструктор
+	Observer(double* center, double radius); //конструктор
+	~Observer(){
+		delete coordinates;
+	}
 	void set_x(double new_x); 
 	void set_y(double new_y);
 	void set_z(double new_z);
-	void set_radius(double new_radius); //радиус до центра фигуры
 	void replace(double* new_coordinates); // Поменять сразу весь массив 
 	double get_x();
 	double get_y();
 	double get_z();
 	double* get_cords();
-	double get_radius();
+	double get_radius(); //Насколько это интересно наблюдателю? Может отдельный класс среды?
 	double shoot(); //Измерить расстояние
 
 private:
-	double coordinates[3];
+	double* coordinates;
 	double radius;
-	//double center; Как он поймет где фигура?
+	double* center;
 	double x;
 	double y;
 	double z;
