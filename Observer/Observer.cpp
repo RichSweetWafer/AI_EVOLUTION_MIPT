@@ -23,7 +23,7 @@ void Observer::set_radius(double new_radius){ //радиус до центра �
 
 void Observer::replace(double* new_coordinates){ // Поменять сразу весь массив
 	for(int i=0; i < 3; i++)
-		coordinates[i] = new_coordinate[i];
+		coordinates[i] = new_coordinates[i];
 	return;
 } 
 double Observer::get_x(){
