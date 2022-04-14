@@ -10,10 +10,6 @@ Target 1: <br />
 <br />
 <br />
 
-1. Класс наблюдателя [DEAD_END]<br />
-  1.1 Застопились до изучения CGAL, остальное все готово.
-2. CGAL[WIP] <br />
-  2.1 Класс объекта <br />
-  2.2 Raycasting <br />
-3. OpenGL/Qt graphics <br />
-4. Модель/Марков/Матстат
+
+1. OpenGL/Qt graphics <br />
+2. Модель/Марков/Матстат
