@@ -43,15 +43,14 @@ Window::Window(MainWindow *mw)
 void Window::onStart()
 {
     QDateTime dateTime1 = QDateTime::currentDateTime();
-    for (int i = 0; i < 3000; i++)
+    for (int i = 0; i < 1000; i++)
     {
+        QDateTime dateTime3 = QDateTime::currentDateTime();
         onStep();
-//        QPair<double, double> pair = glWidget->predict(19,
-//                                                       -1,
-//                                                       4);
-        //if (i % 100 == 0)
-            qDebug("i: %d", i);
-//        qDebug("Predict: %d, %d, %d, act: %f  pred %f loss: %f", 19, -1, 4, pair.first, pair.second, 100.0 - pair.second / pair.first * 100);
+        QDateTime dateTime4 = QDateTime::currentDateTime();
+        qint64 millisecondsDiff = dateTime3.msecsTo(dateTime4);
+        //if (i % 1000 == 0
+            qDebug("%d %lld", i, millisecondsDiff);
     }
     QDateTime dateTime2 = QDateTime::currentDateTime();
     qint64 millisecondsDiff = dateTime1.msecsTo(dateTime2);

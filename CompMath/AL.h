@@ -8,18 +8,14 @@ class MVN
 public:
     double (MVN::*mean)();
     double (MVN::*kernel)();
-    MVN(/*double (MVN::*kernel_func)() = nullptr, double (MVN::*mean_func)() = nullptr*/)
-    {
-        //if (kernel_func == nullptr)
-        //    kernel = &MVN::ARD;
-    };
+    MVN(){};
 
-    int const_mean(double rotate, double rayY, double rayZ)
+    int const_mean()
     {
         return 0;
     }
 
-    double ARD(double rotate_a, double rayY_a, double rayZ_a, double rotate_b, double rayY_b, double rayZ_b, double sigma = 1.5 )//vector& l = vector(3, 100.0))
+    double ARD(double rotate_a, double rayY_a, double rayZ_a, double rotate_b, double rayY_b, double rayZ_b, double sigma = 1.5 )
     {   /* Automatic Relevance Determination */
         vector l;
         l.push_back(10.0);
@@ -75,12 +71,17 @@ class BIRegressor
     double posterior_sigma;
     double posterior_mu;
     Matrix memory;
-    Matrix prev_C_block;
+    symLowerMatrix prev_C_block;
+    symLowerMatrix C_inverse;
+    triLowerMatrix L;
+    triLowerMatrix invL;
     Matrix mu_x;
     Matrix Y;
     int aqcR;
     int aqcY;
     int aqcZ;
+
+    void update_L();
 
 public:
     Process model;

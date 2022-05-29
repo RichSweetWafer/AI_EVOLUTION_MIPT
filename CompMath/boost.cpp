@@ -51,15 +51,88 @@ triUpperMatrix transpose(triLowerMatrix& A)
 
 symLowerMatrix triProd(triUpperMatrix& A, triLowerMatrix& B)
 {
-    size_t n = A.size1();
+    int n = A.size1();
     symLowerMatrix C(n, n);
-    for (size_t j = 0; j < n; j++)
-        for (size_t i = j; i < n; i++)
+    for (int j = 0; j < n; j++)
+        for (int i = j; i < n; i++)
         {
             double val = 0;
-            for (size_t k = i; k < n; k++)
+            for (int k = i; k < n; k++)
                 val += A(i, k) * B(k, j);
             C(i, j) = val;
         }
     return C;
 }
+
+triLowerMatrix invTriLower(triLowerMatrix& A)
+{
+    int size = A.size1();
+    triLowerMatrix B(size, size);
+    for (int i = 0; i < size; i++)
+        B(i, i) = 1 / A(i, i);
+    for (int i = 1; i < size; i++)
+        for (int j = 0; j < i; j++)
+        {
+            B(i, j) = - double(1 / A(i, i));
+            double sum = 0;
+            for (int k = 0; k < i; k++)
+            {
+                if (k < j || k > i)
+                    continue;
+                sum += B(k, j)*A(i, k);
+            }
+            B(i, j) *= sum;
+        }
+    return B;
+}
+
+symLowerMatrix inverse(symLowerMatrix& A)
+{
+    triLowerMatrix tri = choletsky(A);
+    triLowerMatrix invtri = invTriLower(tri);
+    triUpperMatrix invtriTr = transpose(invtri);
+    return triProd(invtriTr, invtri);
+}
+
+//symLowerMatrix inverseL(triLowerMatrix& L)
+//{
+//    int size = L.size1();
+//    triLowerMatrix B(size, size);
+//    for (int i = 0; i < size; i++)
+//        B(i, i) = 1 / L(i, i);
+//    for (int i = 1; i < size; i++)
+//        for (int j = 0; j < i; j++)
+//        {
+//            B(i, j) = - double(1 / L(i, i));
+//            double sum = 0;
+//            for (int k = 0; k < i; k++)
+//            {
+//                if (k < j || k > i)
+//                    continue;
+//                sum += B(k, j)*L(i, k);
+//            }
+//            B(i, j) *= sum;
+//        }
+//    triUpperMatrix C(B.size1(), B.size1());
+//    for (size_t i = 0; i < B.size1(); i++)
+//        for (size_t j = i; j < B.size1(); j++)
+//            C(i, j) = B(j, i);
+//    return triProd(C, B);
+//    // for invL
+//    triUpperMatrix B(L.size1(), L.size1());
+//    for (size_t i = 0; i < L.size1(); i++)
+//        for (size_t j = i; j < L.size1(); j++)
+//            B(i, j) = L(j, i);
+
+//    int n = B.size1();
+//    symLowerMatrix C(n, n);
+//    for (int j = 0; j < n; j++)
+//        for (int i = j; i < n; i++)
+//        {
+//            double val = 0;
+//            for (int k = i; k < n; k++)
+//                val += B(i, k) * L(k, j);
+//            C(i, j) = val;
+//        }
+//    return C;
+//}

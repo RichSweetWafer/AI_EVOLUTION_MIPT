@@ -27,9 +27,9 @@ int main(int argc, char *argv[])
     */
     MainWindow mainWindow;
     mainWindow.resize(mainWindow.sizeHint());
-    int desktopArea = QGuiApplication::primaryScreen()->size().width() *
-                      QGuiApplication::primaryScreen()->size().height();
-    int widgetArea = mainWindow.width() * mainWindow.height();
+//    int desktopArea = QGuiApplication::primaryScreen()->size().width() *
+//                      QGuiApplication::primaryScreen()->size().height();
+//    int widgetArea = mainWindow.width() * mainWindow.height();
 //    if (((float)widgetArea / (float)desktopArea) < 0.75f)
 //        mainWindow.show();
 //    else
